@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ouex pipefail
+set -exou pipefail
 
 rpm-ostree install \
   wireguard-tools \
@@ -10,7 +10,6 @@ rpm-ostree install \
   starship \
   mpv \
   bat \
-  wezterm \
   yt-dlp \
   btop \
   openfortivpn \
