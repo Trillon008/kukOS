@@ -1,0 +1,15 @@
+FROM registry.fedoraproject.org/fedora-toolbox:41
+
+COPY / /ctx
+
+## Install repo and packages
+RUN dnf config-manager addrepo --from-repofile /ctx/repos/hashicorp.repo && \
+  dnf config-manager addrepo --from-repofile /ctx/repos/kubernetes.repo
+
+RUN dnf update -y  && \
+  /bin/bash /ctx/packages.sh
+
+## Cleanup
+RUN rm -rf /ctx && \
+  dnf autoremove -y && dnf clean all
+
