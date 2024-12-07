@@ -8,7 +8,7 @@ RELEASE="$(rpm -E %fedora)"
 /ctx/build/packages.sh
 /ctx/build/fonts.sh
 
-cp /ctx/system_files/flatpaks.sh /usr/local/bin/first-install-flatpak
+cp /ctx/system_files/flatpaks.sh /bin/first-install-flatpak
 
 # Clean up
 rm -rf /ctx
