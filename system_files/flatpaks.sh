@@ -26,6 +26,12 @@ flatpak install -y org.mozilla.firefox \
   com.valvesoftware.Steam \
   org.godotengine.Godot \
   org.signal.Signal \
+  com.spotify.Client \
   org.onlyoffice.desktopeditors \
   org.qbittorrent.qBittorrent \
-  org.rncbc.qpwgraph
+  org.rncbc.qpwgraph \
+  md.obsidian.Obsidian \
+  org.kde.kwrite \
+  org.kde.krdc \
+  org.kde.gwenview \
+  org.kde.okular
