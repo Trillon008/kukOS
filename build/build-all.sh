@@ -8,8 +8,7 @@ RELEASE="$(rpm -E %fedora)"
 /ctx/build/packages.sh
 /ctx/build/fonts.sh
 
-# Maybe put this somewhere else
-systemctl enable podman.socket
+cp /ctx/system_files/flatpaks.sh /bin/first-install-flatpak
 
 # Clean up
 rm -rf /ctx
