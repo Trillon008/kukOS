@@ -25,3 +25,5 @@ rpm-ostree uninstall \
   google-noto-sans-javanese-fonts \
   google-noto-sans-balinese-fonts \
   google-noto-sans-sundanese-fonts
+
+rpm-ostree install /ctx/xwiimote-ng-3.0.1-1.fc41.x86_64.rpm

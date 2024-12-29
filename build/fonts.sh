@@ -3,7 +3,8 @@
 set -exou pipefail
 
 # Font declaration
-FONTS=("Terminus" "Hack")
+#FONTS=("Terminus" "Hack")
+FONTS=("Terminus")
 
 # Shamelessly borrowed from bluebluid fonts module
 # https://github.com/blue-build/modules/blob/main/modules/fonts/sources/nerd-fonts.sh
