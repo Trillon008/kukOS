@@ -7,6 +7,7 @@ rpm-ostree install \
   libatomic \
   pavucontrol-qt \
   neovim \
+  restic \
   starship \
   mpv \
   bat \
