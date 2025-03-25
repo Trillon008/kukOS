@@ -9,7 +9,7 @@ FROM ghcr.io/ublue-os/${SOURCE_IMAGE}-${SOURCE_SUFFIX}:${SOURCE_TAG}
 COPY / /ctx
 
 RUN mkdir -p /var/lib/alternatives && \
-    /ctx/build/build-all.sh && \
+    /ctx/server/build/build-all.sh && \
     ostree container commit
 
 ## NOTES:
