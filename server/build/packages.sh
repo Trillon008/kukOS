@@ -6,6 +6,7 @@ rpm-ostree install \
   neovim \
   restic \
   bat \
+  caddy \
   htop
 
 ## Get Mergerfs in
