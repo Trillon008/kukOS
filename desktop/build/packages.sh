@@ -14,6 +14,7 @@ rpm-ostree install \
   yt-dlp \
   btop \
   openfortivpn \
+  ksystemlog \
   plasma-nm-fortisslvpn \
   NetworkManager-fortisslvpn
 
