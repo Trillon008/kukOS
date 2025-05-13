@@ -1,8 +1,8 @@
 build:
-	podman build -t memorycontainerregistry.azurecr.io/ops .
+	podman build -t localhost/localhost/sre:42 -f Containerfile
 
 test:
-	podman run --rm --name ops -it memorycontainerregistry.azurecr.io/ops bash
+	podman run --rm --name ops -it localhost/localhost/sre:42 bash
 
 debug:
 	podman run --rm -it $(podman images --filter dangling=true -q) bash

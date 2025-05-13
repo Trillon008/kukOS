@@ -1,10 +1,10 @@
-FROM registry.fedoraproject.org/fedora-toolbox:41
+FROM registry.fedoraproject.org/fedora-toolbox:42
 
 COPY / /ctx
 
 ## Install repo and packages
 RUN dnf config-manager addrepo --from-repofile /ctx/repos/hashicorp.repo && \
-  dnf config-manager addrepo --from-repofile /ctx/repos/kubernetes.repo
+  dnf config-manager addrepo --from-repofile /ctx/repos/google-cloud.repo
 
 RUN dnf update -y  && \
   /bin/bash /ctx/packages.sh
