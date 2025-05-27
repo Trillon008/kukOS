@@ -14,9 +14,10 @@ rpm-ostree install \
   yt-dlp \
   btop \
   openfortivpn \
-  ksystemlog \
   plasma-nm-fortisslvpn \
-  NetworkManager-fortisslvpn
+  NetworkManager-fortisslvpn \
+  wezterm \
+  ghostty
 
 rpm-ostree uninstall \
   firefox \
