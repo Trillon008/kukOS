@@ -17,6 +17,7 @@ rpm-ostree install \
   plasma-nm-fortisslvpn \
   NetworkManager-fortisslvpn \
   wezterm \
+  tailscale \
   ghostty
 
 rpm-ostree uninstall \
