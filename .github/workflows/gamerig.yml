@@ -1,11 +1,11 @@
 ---
-name: kukOS-desktop
+name: kukOS-gamerig
 on:
   pull_request:
     branches:
       - main
   schedule:
-    - cron: '05 10 * * *'  # 10:05 UTC everyday
+    - cron: '20 15 * * *'  # 15:20 UTC everyday
   push:
     branches:
       - main
