@@ -3,27 +3,14 @@
 set -exou pipefail
 
 rpm-ostree install \
-  wireguard-tools \
-  libatomic \
   pavucontrol-qt \
   neovim \
   restic \
-  ripgrep \
   starship \
-  mpv \
   bat \
-  yt-dlp \
-  btop \
-  openfortivpn \
-  plasma-nm-fortisslvpn \
-  NetworkManager-fortisslvpn \
-  wezterm \
-  tailscale \
-  ghostty
+  htop
 
 rpm-ostree uninstall \
-  firefox \
-  firefox-langpacks \
   vim-enhanced \
   vim-common \
   vim-minimal \
