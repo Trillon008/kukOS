@@ -1,0 +1,53 @@
+---
+name: kukOS-desktop
+on:
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: '05 10 * * *'  # 10:05 UTC everyday
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**/README.md'
+  workflow_dispatch:
+
+jobs:
+  desktop:
+    name: Build KukOS desktop 
+    uses: "./.github/workflows/build_push.yml"
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    with:
+      image_name: desktop
+      fedora_version: 42
+    secrets: inherit
+
+  server:
+    name: Build KukOS server 
+    uses: "./.github/workflows/build_push.yaml"
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    with:
+      image_name: server
+      fedora_version: stable
+    secrets: inherit
+
+  gamerig:
+    name: Build KukOS game 
+    uses: "./.github/workflows/build_push.yaml"
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    with:
+      image_name: gamerig
+      fedora_version: stable
+    secrets: inherit
+
+ 
