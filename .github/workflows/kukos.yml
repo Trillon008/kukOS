@@ -1,5 +1,5 @@
 ---
-name: kukOS-desktop
+name: kukOS
 on:
   pull_request:
     branches:
@@ -14,8 +14,29 @@ on:
   workflow_dispatch:
 
 jobs:
+  # Bazzite is updated when it needs to be updated
+  # Since we build everyday, we check if the last build is more than 24 hours
+  # This way we ship our bazzite 'at the same time' and can check the update logs
+  updater:
+    runs-on: ubuntu-24.04
+    outputs:
+      update: ${{ steps.updater.outputs.update }}
+    steps:
+      - name: Do we need to update ?
+        id: updater
+        run : |
+          update="true"
+          raw_git_date=$(curl https://api.github.com/repos/ublue-os/bazzite/releases/latest | jq -r '.published_at')
+          git_date=$(date -d ${raw_git_date} +%s)
+          ajd=$(date +%s)
+          diff=$(( ajd - git_date ))
+          if (( diff > 86400 )); then
+            update="false" 
+          fi
+          echo "update=${update}" >> "$GITHUB_OUTPUT"
+
   desktop:
-    name: Build KukOS desktop 
+    name: KukOS desktop 
     uses: "./.github/workflows/build_push.yml"
     permissions:
       contents: read
@@ -27,8 +48,8 @@ jobs:
     secrets: inherit
 
   server:
-    name: Build KukOS server 
-    uses: "./.github/workflows/build_push.yaml"
+    name: KukOS server 
+    uses: "./.github/workflows/build_push.yml"
     permissions:
       contents: read
       packages: write
@@ -37,17 +58,21 @@ jobs:
       image_name: server
       fedora_version: stable
     secrets: inherit
-
+  
   gamerig:
-    name: Build KukOS game 
-    uses: "./.github/workflows/build_push.yaml"
-    permissions:
-      contents: read
-      packages: write
-      id-token: write
+    needs: updater
+    # Don't asks why but:
+    # - the value MUST BE single quoted
+    if: ${{ needs.updater.outputs.update == 'true' }}
+    name: KukOS game 
+    uses: "./.github/workflows/build_push.yml"
     with:
       image_name: gamerig
       fedora_version: stable
     secrets: inherit
+    permissions:
+      contents: read
+      packages: write
+      id-token: write   
 
  

@@ -19,7 +19,6 @@ on:
 env:
   MY_IMAGE_DESC: "KukOS ${{ inputs.image_name }} deployment"
   IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"  # do not edit
-  #FEDORA_VERSION: 42
 
 #concurrency:
 #  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}-${{ inputs.brand_name}}-${{ inputs.stream_name }}
@@ -29,11 +28,6 @@ jobs:
   build_push:
     name: Build and push image
     runs-on: ubuntu-24.04
-
-    permissions:
-      contents: read
-      packages: write
-      id-token: write
 
     steps:
       # Checkout push-to-registry action GitHub repository
@@ -48,7 +42,7 @@ jobs:
         shell: bash
         run: |
           # Generate a timestamp for creating an image version history
-          TIMESTAMP="$(date +%Y%m%d)"
+          TIMESTAMP="$(date +%d%m%Y)"
           COMMIT_TAGS=()
           BUILD_TAGS=()
 
@@ -64,7 +58,7 @@ jobs:
 
           BUILD_TAGS+=("${TIMESTAMP}")
           BUILD_TAGS+=("latest")
-          BUILD_TAGS+=("${{ inputs.fedora_version}}")
+          BUILD_TAGS+=("${{ inputs.fedora_version }}")
 
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
               echo "Generated the following commit tags: "
@@ -103,7 +97,7 @@ jobs:
         uses: redhat-actions/buildah-build@v2
         with:
           containerfiles: |
-            ./${{ inputs.image_name}}/Containerfile
+            ./${{ inputs.image_name }}/Containerfile
           # Postfix image name with -custom to make it a little more descriptive
           # Syntax: https://docs.github.com/en/actions/learn-github-actions/expressions#format
           image: ${{ inputs.image_name }}
