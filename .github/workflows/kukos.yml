@@ -18,7 +18,7 @@ jobs:
   # Since we build everyday, we check if the last build is more than 24 hours
   # This way we ship our bazzite 'at the same time' and can check the update logs
   updater:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     outputs:
       update: ${{ steps.updater.outputs.update }}
     steps:
@@ -33,6 +33,7 @@ jobs:
           if (( diff > 86400 )); then
             update="false" 
           fi
+          echo "Do we need to update: ${update}"
           echo "update=${update}" >> "$GITHUB_OUTPUT"
 
   desktop:
