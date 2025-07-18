@@ -12,7 +12,7 @@ RELEASE="$(rpm -E %fedora)"
 # Need to include some edid firmware in bazzite image.
 
 mkdir -p /lib/firmware/edid
-cp /ctx/gamerig/system_files/dell-2408wfp-dp /lib/firmware/edid/
+cp /ctx/gamerig/system_files/* /lib/firmware/edid/
 
 # Clean up
 rm -rf /ctx
