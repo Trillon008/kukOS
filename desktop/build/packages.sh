@@ -19,7 +19,7 @@ rpm-ostree install \
   NetworkManager-fortisslvpn \
   wezterm \
   tailscale \
-  ghostty
+  hledger
 
 rpm-ostree uninstall \
   firefox \
