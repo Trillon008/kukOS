@@ -3,18 +3,27 @@ name: Build KukOS
 on:
   workflow_call:
     inputs:
-      # This will be used also in the path to containerfiles
-      # basically wez only have choicen for
-      # - desktop
-      # - gamerig
-      # - server
       image_name:
         required: true
         type: string
       fedora_version:
         required: true
         type: string
-
+  workflow_dispatch:
+    inputs:
+      image_name:
+        required: true
+        type: choice
+        options:
+          - desktop
+          - server
+          - gamerig
+      fedora_version:
+        required: true
+        type: choice
+        options:
+          - stable
+          - 42
 
 env:
   MY_IMAGE_DESC: "KukOS ${{ inputs.image_name }} deployment"
