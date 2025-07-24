@@ -18,6 +18,7 @@ rpm-ostree install \
   plasma-nm-fortisslvpn \
   NetworkManager-fortisslvpn \
   wezterm \
+  tlp \
   tailscale \
   hledger
 
