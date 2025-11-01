@@ -6,11 +6,12 @@ dnf install -y htop \
   bind-utils \
   azure-cli \
   python3-pip \
-  terraform-1.10.5 \
+  terraform-1.12.2 \
   kubectl \
   google-cloud-cli \
   google-cloud-cli-gke-gcloud-auth-plugin \
   jq \
+  yq \
   helm \
   bat
 
