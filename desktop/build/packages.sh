@@ -2,6 +2,8 @@
 
 set -exou pipefail
 
+dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+
 rpm-ostree install \
   wireguard-tools \
   libatomic \
