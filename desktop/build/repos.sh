@@ -57,3 +57,19 @@ repo_gpgcheck=1
 gpgcheck=1
 gpgkey=https://pkgs.tailscale.com/stable/fedora/repo.gpg
 EOF
+
+cat <<EOF >/etc/yum.repos.d/terra.repo
+[terra]
+name=Terra $releasever
+#baseurl=https://repos.fyralabs.com/terra$releasever
+metalink=https://tetsudou.fyralabs.com/metalink?repo=terra$releasever&arch=$basearch
+metadata_expire=6h
+type=rpm
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-terra$releasever
+repo_gpgcheck=1
+enabled=1
+enabled_metadata=1
+countme=1
+priority=5
+EOF

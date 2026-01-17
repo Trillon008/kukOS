@@ -20,7 +20,7 @@ rpm-ostree install \
   wezterm \
   tlp \
   tailscale \
-  hledger
+  zed
 
 rpm-ostree uninstall \
   firefox \
@@ -31,3 +31,6 @@ rpm-ostree uninstall \
   google-noto-sans-javanese-fonts \
   google-noto-sans-balinese-fonts \
   google-noto-sans-sundanese-fonts
+
+## Not a fan of this but for now this is all we got
+npm -g install cursor-acp

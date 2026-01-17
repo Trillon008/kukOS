@@ -17,7 +17,7 @@ dnf install -y htop \
 
 # Sops
 curl -LO https://github.com/getsops/sops/releases/download/v3.11.0/sops-v3.11.0.linux.amd64
-mv sops-v3.11.0.linux.amd64 /usr/local/bin/sops
+mv sops-v3.11.0.linux.amd64 /bin/sops
 chmod +x /bin/sops
 
 # k9s
