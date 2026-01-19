@@ -13,6 +13,7 @@ baseurl=https://download.copr.fedorainfracloud.org/results/atim/starship/fedora-
 type=rpm-md
 skip_if_unavailable=True
 gpgcheck=1
+priority=4
 gpgkey=https://download.copr.fedorainfracloud.org/results/atim/starship/pubkey.gpg
 repo_gpgcheck=0
 enabled=1
@@ -27,6 +28,7 @@ baseurl=https://download.copr.fedorainfracloud.org/results/wezfurlong/wezterm-ni
 type=rpm-md
 skip_if_unavailable=True
 gpgcheck=1
+priority=4
 gpgkey=https://download.copr.fedorainfracloud.org/results/wezfurlong/wezterm-nightly/pubkey.gpg
 repo_gpgcheck=0
 enabled=1
@@ -41,17 +43,19 @@ baseurl=https://download.copr.fedorainfracloud.org/results/pgdev/ghostty/fedora-
 type=rpm-md
 skip_if_unavailable=True
 gpgcheck=1
+priority=4
 gpgkey=https://download.copr.fedorainfracloud.org/results/pgdev/ghostty/pubkey.gpg
 repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 EOF
 
-cat <<EOF >/etc/yum.repos.d/tailsclae.repo
+cat <<EOF >/etc/yum.repos.d/tailscale.repo
 [tailscale-stable]
 name=Tailscale stable
 baseurl=https://pkgs.tailscale.com/stable/fedora/\$basearch
 enabled=1
+priority=4
 type=rpm
 repo_gpgcheck=1
 gpgcheck=1
