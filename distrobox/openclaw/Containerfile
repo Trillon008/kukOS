@@ -1,0 +1,27 @@
+FROM registry.fedoraproject.org/fedora-toolbox:43
+
+COPY / /ctx
+
+RUN dnf update -y \
+    && dnf install -y  nodejs-npm  java-latest-openjdk \
+    && dnf clean all
+
+RUN npm install -g openclaw@latest && npm cache clean --force
+
+# Get latest signal-cli
+RUN set -eux; \
+    VERSION="$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/AsamK/signal-cli/releases/latest | sed -e 's#^.*/v##')"; \
+    curl -L -o /tmp/signal-cli.tar.gz "https://github.com/AsamK/signal-cli/releases/download/v${VERSION}/signal-cli-${VERSION}.tar.gz"; \
+    tar -xzf /tmp/signal-cli.tar.gz -C /opt; \
+    ln -s "/opt/signal-cli-${VERSION}/bin/signal-cli" /usr/local/bin/signal-cli; \
+    rm -f /tmp/signal-cli.tar.gz
+
+#RUN useradd -m -u 10001 signal
+#USER signal
+#WORKDIR /home/signal
+#
+## Données persistantes signal-cli
+#VOLUME ["/home/signal/.local/share/signal-cli"]
+#
+#ENTRYPOINT ["tini", "--", "signal-cli"]
+#CMD ["--help"]

@@ -26,7 +26,7 @@ rpm -i k9s_linux_amd64.rpm
 rm -f k9s_linux_amd64.rpm
 
 # flux CD
-curl -LO https://github.com/fluxcd/flux2/releases/download/v2.7.7/flux_2.7.5_linux_amd64.tar.gz
+curl -LO https://github.com/fluxcd/flux2/releases/download/v2.7.5/flux_2.7.5_linux_amd64.tar.gz
 tar xf flux_2.7.5_linux_amd64.tar.gz
 mv flux /bin/flux
 rm -f flux*
