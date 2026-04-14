@@ -23,7 +23,7 @@ on:
         type: choice
         options:
           - stable
-          - 42
+          - 43
 
 env:
   MY_IMAGE_DESC: "KukOS ${{ inputs.image_name }} deployment"
