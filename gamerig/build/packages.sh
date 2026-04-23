@@ -7,6 +7,7 @@ rpm-ostree install \
   neovim \
   restic \
   bat \
+  llama-cpp \
   htop
 
 rpm-ostree uninstall \
