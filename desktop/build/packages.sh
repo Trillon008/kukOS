@@ -4,7 +4,7 @@ set -exou pipefail
 
 dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
 
-dnf5 install \
+ dnf update -y && dnf5 install \
   wireguard-tools \
   libatomic \
   pavucontrol-qt \
@@ -20,9 +20,13 @@ dnf5 install \
   plasma-nm-fortisslvpn \
   NetworkManager-fortisslvpn \
   wezterm \
-  tlp \
   tailscale \
   zed
+
+#Useless now ?
+#   wireguard-tools \
+# libatomic \
+# tlp conflict with tuned
 
 dnf5 uninstall \
   firefox \
