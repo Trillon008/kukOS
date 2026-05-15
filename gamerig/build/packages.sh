@@ -2,7 +2,7 @@
 
 set -exou pipefail
 
-rpm-ostree install \
+dnf5 install -y install \
   pavucontrol-qt \
   neovim \
   restic \
@@ -10,8 +10,11 @@ rpm-ostree install \
   llama-cpp \
   htop
 
-rpm-ostree uninstall \
+dnf5 uninstall -y uninstall \
   vim-enhanced \
   google-noto-sans-javanese-fonts \
   google-noto-sans-balinese-fonts \
   google-noto-sans-sundanese-fonts
+
+
+dnf5 clean all
