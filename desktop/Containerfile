@@ -1,18 +1,13 @@
 ARG SOURCE_IMAGE="kinoite"
 ARG SOURCE_SUFFIX="main"
-ARG SOURCE_TAG="43"
+ARG SOURCE_TAG="44"
 
 ### 2. SOURCE IMAGE
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}-${SOURCE_SUFFIX}:${SOURCE_TAG}
 
-
 ### 3. MODIFICATIONS
-COPY / /ctx
+COPY /desktop /ctx
 
 RUN mkdir -p /var/lib/alternatives && \
-    /ctx/desktop/build/build-all.sh && \
-    ostree container commit
-## NOTES:
-# - /var/lib/alternatives is required to prevent failure with some RPM installs
-# - All RUN commands must end with ostree container commit
-#   see: https://coreos.github.io/rpm-ostree/container/#using-ostree-container-commit
+    /ctx/build/build-all.sh && \
+    dnf5 clean all
