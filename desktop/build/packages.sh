@@ -28,7 +28,7 @@ dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/te
 # libatomic \
 # tlp conflict with tuned
 
-dnf5 uninstall -y \
+dnf5 remove -y \
   firefox \
   firefox-langpacks \
   vim-enhanced \
