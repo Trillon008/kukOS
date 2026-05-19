@@ -23,11 +23,11 @@ on:
         type: choice
         options:
           - stable
-          - 43
+          - "44"
 
 env:
   MY_IMAGE_DESC: "KukOS ${{ inputs.image_name }} deployment"
-  IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"  # do not edit
+  IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}" # do not edit
 
 #concurrency:
 #  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}-${{ inputs.brand_name}}-${{ inputs.stream_name }}
@@ -149,7 +149,6 @@ jobs:
       # your project for others to consume. You will need to create a public and private key
       # using Cosign and save the private key as a repository secret in Github for this workflow
       # to consume. For more details, review the image signing section of the README.
-
       # Sign container
       - uses: sigstore/cosign-installer@v4.1.2
         # if: github.event_name != 'pull_request'

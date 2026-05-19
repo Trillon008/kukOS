@@ -25,13 +25,20 @@ flatpak install -y org.mozilla.firefox \
   com.heroicgameslauncher.hgl \
   com.valvesoftware.Steam \
   org.godotengine.Godot \
+  com.moonlight_stream.Moonlight \
   org.signal.Signal \
   com.spotify.Client \
+  com.actualbudget.actual \
   org.onlyoffice.desktopeditors \
   org.qbittorrent.qBittorrent \
   org.rncbc.qpwgraph \
   md.obsidian.Obsidian \
+  org.freecad.FreeCAD \
+  io.github.softfever.OrcaSlicer \
+  io.github.DenysMb.Kontainer \
+  net.mkiol.SpeechNote \
   org.kde.kwrite \
   org.kde.krdc \
   org.kde.gwenview \
-  org.kde.okular
+  org.kde.okular \
+  org.kde.gwenview

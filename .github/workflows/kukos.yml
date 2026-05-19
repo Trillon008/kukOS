@@ -5,12 +5,12 @@ on:
     branches:
       - main
   schedule:
-    - cron: '05 10 * * *'  # 10:05 UTC everyday
+    - cron: "05 10 * * *" # 10:05 UTC everyday
   push:
     branches:
       - main
     paths-ignore:
-      - '**/README.md'
+      - "**/README.md"
   workflow_dispatch:
 
 jobs:
@@ -24,20 +24,20 @@ jobs:
     steps:
       - name: Do we need to update ?
         id: updater
-        run : |
+        run: |
           update="true"
           raw_git_date=$(curl https://api.github.com/repos/ublue-os/bazzite/releases/latest | jq -r '.published_at')
           git_date=$(date -d ${raw_git_date} +%s)
           ajd=$(date +%s)
           diff=$(( ajd - git_date ))
           if (( diff > 86400 )); then
-            update="false" 
+            update="false"
           fi
           echo "Do we need to update: ${update}"
           echo "update=${update}" >> "$GITHUB_OUTPUT"
 
   desktop:
-    name: KukOS desktop 
+    name: KukOS desktop
     uses: "./.github/workflows/build_push.yml"
     permissions:
       contents: read
@@ -45,11 +45,11 @@ jobs:
       id-token: write
     with:
       image_name: desktop
-      fedora_version: 43
+      fedora_version: 44
     secrets: inherit
 
   server:
-    name: KukOS server 
+    name: KukOS server
     uses: "./.github/workflows/build_push.yml"
     permissions:
       contents: read
@@ -59,13 +59,13 @@ jobs:
       image_name: server
       fedora_version: stable
     secrets: inherit
-  
+
   gamerig:
     needs: updater
     # Don't asks why but:
     # - the value MUST BE single quoted
     if: ${{ needs.updater.outputs.update == 'true' }}
-    name: KukOS game 
+    name: KukOS game
     uses: "./.github/workflows/build_push.yml"
     with:
       image_name: gamerig
@@ -74,6 +74,4 @@ jobs:
     permissions:
       contents: read
       packages: write
-      id-token: write   
-
- 
+      id-token: write
