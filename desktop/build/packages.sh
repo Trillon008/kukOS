@@ -3,7 +3,7 @@
 set -exou pipefail
 
 ## Test new filter
-curl -fsSL "https://github.com/Rikorose/DeepFilterNet/releases/download/v0.5.6/libdeep_filter_ladspa-0.5.6-x86_64-unknown-linux-gnu.so" -o /usr/lib64/ladspa/
+wget -qcO /usr/lib64/ladspa/libdeep.so  https://github.com/Rikorose/DeepFilterNet/releases/download/v0.5.6/libdeep_filter_ladspa-0.5.6-x86_64-unknown-linux-gnu.so
 
 dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
 
