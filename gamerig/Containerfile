@@ -6,7 +6,7 @@ ARG SOURCE_TAG="stable"
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}-${SOURCE_SUFFIX}:${SOURCE_TAG}
 
 ### 3. MODIFICATIONS
-COPY /gamerrig /ctx
+COPY /gamerig /ctx
 
 RUN mkdir -p /var/lib/alternatives && \
     /ctx/build/build-all.sh

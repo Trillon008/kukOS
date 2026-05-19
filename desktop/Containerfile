@@ -9,5 +9,4 @@ FROM ghcr.io/ublue-os/${SOURCE_IMAGE}-${SOURCE_SUFFIX}:${SOURCE_TAG}
 COPY /desktop /ctx
 
 RUN mkdir -p /var/lib/alternatives && \
-    /ctx/build/build-all.sh && \
-    dnf5 clean all
+    /ctx/build/build-all.sh

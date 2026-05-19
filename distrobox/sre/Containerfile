@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora-toolbox:43
+FROM registry.fedoraproject.org/fedora-toolbox:44
 
 COPY / /ctx
 
@@ -12,4 +12,3 @@ RUN dnf update -y  && \
 ## Cleanup
 RUN rm -rf /ctx && \
   dnf autoremove -y && dnf clean all
-

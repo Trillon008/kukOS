@@ -10,5 +10,3 @@ RELEASE="$(rpm -E %fedora)"
 
 # Clean up
 rm -rf /ctx
-
-dnf5 clean all

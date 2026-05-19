@@ -5,9 +5,6 @@ set -exou pipefail
 dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
 
  dnf update -y && dnf5 install -y \
-  wireguard-tools \
-  libatomic \
-  pavucontrol-qt \
   neovim \
   restic \
   ripgrep \
@@ -37,3 +34,5 @@ dnf5 remove -y \
   google-noto-sans-javanese-fonts \
   google-noto-sans-balinese-fonts \
   google-noto-sans-sundanese-fonts
+
+dnf5 autoremove && dnf5 clean all
