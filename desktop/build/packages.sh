@@ -2,23 +2,26 @@
 
 set -exou pipefail
 
+## Test new filter
+curl -fsSL "https://github.com/Rikorose/DeepFilterNet/releases/download/v0.5.6/libdeep_filter_ladspa-0.5.6-x86_64-unknown-linux-gnu.so" -o /usr/lib64/ladspa/
+
 dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
 
- dnf update -y && dnf5 install -y \
-  neovim \
-  restic \
-  ripgrep \
-  starship \
-  mpv \
-  bat \
-  yt-dlp \
-  btop \
-  openfortivpn \
-  plasma-nm-fortisslvpn \
-  NetworkManager-fortisslvpn \
-  wezterm \
-  tailscale \
-  zed
+dnf update -y && dnf5 install -y \
+ neovim \
+ restic \
+ ripgrep \
+ starship \
+ mpv \
+ bat \
+ yt-dlp \
+ btop \
+ openfortivpn \
+ plasma-nm-fortisslvpn \
+ NetworkManager-fortisslvpn \
+ wezterm \
+ tailscale \
+ zed
 
 #Useless now ?
 #   wireguard-tools \
