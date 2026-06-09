@@ -2,8 +2,6 @@
 
 set -exou pipefail
 
-RELEASE="$(rpm -E %fedora)"
-
 /ctx/build/packages.sh
 
 # Clean up
