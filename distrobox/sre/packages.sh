@@ -6,17 +6,22 @@ dnf5 install -y htop \
   bind-utils \
   azure-cli \
   python3-pip \
-  terraform-1.12.2 \
+  terraform-1.14.6 \
   kubectl \
   google-cloud-cli \
   google-cloud-cli-gke-gcloud-auth-plugin \
   jq \
   yq \
   helm \
-  bat
+  bat \
+  gh \
+  ShellCheck \
+  ripgrep \
+  just \
+  make
 
 # Sops
-curl -LO https://github.com/getsops/sops/releases/download/v3.11.0/sops-v3.11.0.linux.amd64
+curl -LO https://github.com/getsops/sops/releases/download/v3.13.1/sops-v3.11.0.linux.amd64
 mv sops-v3.11.0.linux.amd64 /bin/sops
 chmod +x /bin/sops
 
