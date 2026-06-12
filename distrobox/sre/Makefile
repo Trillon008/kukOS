@@ -1,8 +1,8 @@
 build:
-	podman build -t localhost/localhost/sre:43 -f Containerfile
+	podman build -t localhost/localhost/sre:44 -f Containerfile
 
 test:
-	podman run --rm --name sre  localhost/localhost/sre:43 cat /etc/fedora-release
+	podman run --rm --name sre  localhost/localhost/sre:44 cat /etc/fedora-release
 
 debug:
 	podman run --rm -it $(podman images --filter dangling=true -q) bash

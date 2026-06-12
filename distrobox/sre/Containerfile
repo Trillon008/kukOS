@@ -3,9 +3,9 @@ FROM registry.fedoraproject.org/fedora-toolbox:44
 COPY / /ctx
 
 ## Install repo and packages
-RUN dnf config-manager addrepo --from-repofile /ctx/repos/hashicorp.repo && \
-  dnf config-manager addrepo --from-repofile /ctx/repos/google-cloud.repo && \
-  sudo dnf config-manager addrepo --from-repofile /ctx/repos/github.repo
+RUN dnf config-manager addrepo --from-repofile /ctx/repos/github.repo \
+  && dnf config-manager addrepo --from-repofile /ctx/repos/google-cloud.repo 
+  # && dnf config-manager addrepo --from-repofile /ctx/repos/hashicorp.repo
 
 RUN dnf update -y  && \
   /bin/bash /ctx/packages.sh
