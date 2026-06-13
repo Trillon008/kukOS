@@ -3,14 +3,13 @@
 set -exou pipefail
 
 dnf5 install -y install \
-  pavucontrol-qt \
   neovim \
   restic \
   bat \
   llama-cpp \
   htop
 
-dnf5 uninstall -y uninstall \
+dnf5 remove -y  \
   vim-enhanced \
   google-noto-sans-javanese-fonts \
   google-noto-sans-balinese-fonts \
