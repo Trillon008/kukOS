@@ -4,15 +4,15 @@ set -exou pipefail
 
 RELEASE="$(rpm -E %fedora)"
 
-/ctx/gamerig/build/repos.sh
-/ctx/gamerig/build/packages.sh
-#/ctx/gamerig/build/fonts.sh
+/ctx/build/repos.sh
+/ctx/build/packages.sh
+#/ctx/build/fonts.sh
 
 # For creating virtual screen and streaming
 # Need to include some edid firmware in bazzite image.
 
 mkdir -p /lib/firmware/edid
-cp /ctx/gamerig/system_files/* /lib/firmware/edid/
+cp /ctx/system_files/* /lib/firmware/edid/
 
 # Clean up
 rm -rf /ctx
