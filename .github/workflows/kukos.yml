@@ -14,29 +14,105 @@ on:
   workflow_dispatch:
 
 jobs:
-  # Bazzite is updated when it needs to be updated
-  # Since we build everyday, we check if the last build is more than 24 hours
-  # This way we ship our bazzite 'at the same time' and can check the update logs
-  updater:
+  check_desktop:
+    name: Check desktop base image
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
     outputs:
-      update: ${{ steps.updater.outputs.update }}
+      update: ${{ steps.compare.outputs.update }}
+    env:
+      BASE_IMAGE: ghcr.io/ublue-os/kinoite-main:44
+      TARGET_IMAGE: ghcr.io/${{ github.repository_owner }}/kukos-desktop:44
     steps:
-      - name: Do we need to update ?
-        id: updater
+      - name: Install skopeo
+        run: sudo apt-get update && sudo apt-get install -y skopeo
+
+      - name: Compare published desktop base digest
+        id: compare
+        shell: bash
         run: |
-          update="true"
-          raw_git_date=$(curl https://api.github.com/repos/ublue-os/bazzite/releases/latest | jq -r '.published_at')
-          git_date=$(date -d ${raw_git_date} +%s)
-          ajd=$(date +%s)
-          diff=$(( ajd - git_date ))
-          if (( diff > 86400 )); then
+          base_image="$(printf '%s' "${BASE_IMAGE}" | tr '[:upper:]' '[:lower:]')"
+          target_image="$(printf '%s' "${TARGET_IMAGE}" | tr '[:upper:]' '[:lower:]')"
+          base_digest="$(skopeo inspect "docker://${base_image}" | jq -r '.Digest')"
+          target_base_digest="$(skopeo inspect "docker://${target_image}" | jq -r '.Labels["org.opencontainers.image.base.digest"] // empty')"
+
+          if [[ -z "${target_base_digest}" || "${base_digest}" != "${target_base_digest}" ]]; then
+            update="true"
+          else
             update="false"
           fi
-          echo "Do we need to update: ${update}"
+
+          echo "update=${update}" >> "$GITHUB_OUTPUT"
+
+  check_server:
+    name: Check server base image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    outputs:
+      update: ${{ steps.compare.outputs.update }}
+    env:
+      BASE_IMAGE: ghcr.io/ublue-os/ucore:stable-nvidia-lts
+      TARGET_IMAGE: ghcr.io/${{ github.repository_owner }}/kukos-server:stable
+    steps:
+      - name: Install skopeo
+        run: sudo apt-get update && sudo apt-get install -y skopeo
+
+      - name: Compare published server base digest
+        id: compare
+        shell: bash
+        run: |
+          base_image="$(printf '%s' "${BASE_IMAGE}" | tr '[:upper:]' '[:lower:]')"
+          target_image="$(printf '%s' "${TARGET_IMAGE}" | tr '[:upper:]' '[:lower:]')"
+          base_digest="$(skopeo inspect "docker://${base_image}" | jq -r '.Digest')"
+          target_base_digest="$(skopeo inspect "docker://${target_image}" | jq -r '.Labels["org.opencontainers.image.base.digest"] // empty')"
+
+          if [[ -z "${target_base_digest}" || "${base_digest}" != "${target_base_digest}" ]]; then
+            update="true"
+          else
+            update="false"
+          fi
+
+          echo "update=${update}" >> "$GITHUB_OUTPUT"
+
+  check_gamerig:
+    name: Check gamerig base image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    outputs:
+      update: ${{ steps.compare.outputs.update }}
+    env:
+      BASE_IMAGE: ghcr.io/ublue-os/bazzite-nvidia-open:stable
+      TARGET_IMAGE: ghcr.io/${{ github.repository_owner }}/kukos-gamerig:stable
+    steps:
+      - name: Install skopeo
+        run: sudo apt-get update && sudo apt-get install -y skopeo
+
+      - name: Compare published gamerig base digest
+        id: compare
+        shell: bash
+        run: |
+          base_image="$(printf '%s' "${BASE_IMAGE}" | tr '[:upper:]' '[:lower:]')"
+          target_image="$(printf '%s' "${TARGET_IMAGE}" | tr '[:upper:]' '[:lower:]')"
+          base_digest="$(skopeo inspect "docker://${base_image}" | jq -r '.Digest')"
+          target_base_digest="$(skopeo inspect "docker://${target_image}" | jq -r '.Labels["org.opencontainers.image.base.digest"] // empty')"
+
+          if [[ -z "${target_base_digest}" || "${base_digest}" != "${target_base_digest}" ]]; then
+            update="true"
+          else
+            update="false"
+          fi
+
           echo "update=${update}" >> "$GITHUB_OUTPUT"
 
   desktop:
+    needs: check_desktop
+    if: ${{ github.event_name != 'schedule' || needs.check_desktop.outputs.update == 'true' }}
     name: KukOS desktop
     uses: "./.github/workflows/build_push.yml"
     permissions:
@@ -45,10 +121,12 @@ jobs:
       id-token: write
     with:
       image_name: desktop
-      fedora_version: 44
+      fedora_version: "44"
     secrets: inherit
 
   server:
+    needs: check_server
+    if: ${{ github.event_name != 'schedule' || needs.check_server.outputs.update == 'true' }}
     name: KukOS server
     uses: "./.github/workflows/build_push.yml"
     permissions:
@@ -61,17 +139,15 @@ jobs:
     secrets: inherit
 
   gamerig:
-    needs: updater
-    # Don't asks why but:
-    # - the value MUST BE single quoted
-    if: ${{ needs.updater.outputs.update == 'true' }}
+    needs: check_gamerig
+    if: ${{ github.event_name != 'schedule' || needs.check_gamerig.outputs.update == 'true' }}
     name: KukOS game
     uses: "./.github/workflows/build_push.yml"
-    with:
-      image_name: gamerig
-      fedora_version: stable
-    secrets: inherit
     permissions:
       contents: read
       packages: write
       id-token: write
+    with:
+      image_name: gamerig
+      fedora_version: stable
+    secrets: inherit
