@@ -7,26 +7,23 @@ wget -qcO /usr/lib64/ladspa/libdeep.so  https://github.com/Rikorose/DeepFilterNe
 
 dnf5 install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
 
-dnf update -y && dnf5 install -y \
+dnf5 update -y && dnf5 install -y \
+ bat \
+ btop \
+ mpv \
  neovim \
+ NetworkManager-fortisslvpn \
+ openfortivpn \
+ plasma-nm-fortisslvpn \
+ qemu \
  restic \
  ripgrep \
  starship \
- mpv \
- bat \
- yt-dlp \
- btop \
- openfortivpn \
- plasma-nm-fortisslvpn \
- NetworkManager-fortisslvpn \
- wezterm \
  tailscale \
+ wezterm \
+ yt-dlp \
  zed
 
-#Useless now ?
-#   wireguard-tools \
-# libatomic \
-# tlp conflict with tuned
 
 dnf5 remove -y \
   firefox \

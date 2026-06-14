@@ -3,11 +3,11 @@
 set -exou pipefail
 
 dnf5 install -y install \
+  bat \
+  htop \
+  llama-cpp \
   neovim \
   restic \
-  bat \
-  llama-cpp \
-  htop
 
 dnf5 remove -y  \
   vim-enhanced \
