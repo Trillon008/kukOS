@@ -7,13 +7,13 @@ dnf5 install -y install \
   htop \
   llama-cpp \
   neovim \
-  restic \
+  sunshine \
+  restic
 
-dnf5 remove -y  \
+dnf5 remove -y \
   vim-enhanced \
   google-noto-sans-javanese-fonts \
   google-noto-sans-balinese-fonts \
   google-noto-sans-sundanese-fonts
-
 
 dnf5 autoremove && dnf5 clean all
