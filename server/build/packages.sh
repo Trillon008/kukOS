@@ -6,6 +6,7 @@ dnf5 install -y install \
   bat \
   htop \
   neovim \
-  restic \
+  nvtop \
+  restic
 
 dnf5 autoremove && dnf5 clean all
