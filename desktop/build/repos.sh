@@ -20,6 +20,20 @@ enabled=1
 enabled_metadata=1
 EOF
 
+# Ghostty repo
+cat <<EOF >/etc/yum.repos.d/ghostty
+[copr:copr.fedorainfracloud.org:scottames:ghostty]
+name=Copr repo for ghostty owned by scottames
+baseurl=https://download.copr.fedorainfracloud.org/results/scottames/ghostty/fedora-\$releasever-\$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://download.copr.fedorainfracloud.org/results/scottames/ghostty/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+EOF
+
 # Wezterm repo
 cat <<EOF >/etc/yum.repos.d/wezterm.repo
 [copr:copr.fedorainfracloud.org:wezfurlong:wezterm-nightly]
