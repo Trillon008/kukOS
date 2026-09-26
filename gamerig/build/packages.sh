@@ -5,6 +5,7 @@ set -exou pipefail
 dnf5 install -y install \
   bat \
   htop \
+  libusb1 \
   llama-cpp \
   neovim \
   sunshine \
