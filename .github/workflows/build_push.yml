@@ -23,7 +23,7 @@ on:
         type: choice
         options:
           - stable
-          - "44"
+          - "45"
 
 permissions:
   contents: read
