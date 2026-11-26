@@ -23,8 +23,8 @@ jobs:
     outputs:
       update: ${{ steps.compare.outputs.update }}
     env:
-      BASE_IMAGE: ghcr.io/ublue-os/kinoite-main:44
-      TARGET_IMAGE: ghcr.io/${{ github.repository_owner }}/kukos-desktop:44
+      BASE_IMAGE: ghcr.io/ublue-os/kinoite-main:45
+      TARGET_IMAGE: ghcr.io/${{ github.repository_owner }}/kukos-desktop:45
     steps:
       - name: Install skopeo
         run: sudo apt-get update && sudo apt-get install -y skopeo
@@ -121,7 +121,7 @@ jobs:
       id-token: write
     with:
       image_name: desktop
-      fedora_version: "44"
+      fedora_version: "45"
     secrets: inherit
 
   server:
