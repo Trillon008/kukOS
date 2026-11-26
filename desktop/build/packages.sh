@@ -11,12 +11,8 @@ dnf5 update -y && dnf5 install -y \
   bat \
   btop \
   edk2-ovmf \
-  ghostty \
   mpv \
   neovim \
-  NetworkManager-fortisslvpn \
-  openfortivpn \
-  plasma-nm-fortisslvpn \
   qemu \
   restic \
   ripgrep \
